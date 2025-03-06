@@ -423,7 +423,7 @@ async def generator_and_about(app,m):
         await c.connect()
         await rep.delete()
         phone_ask = await m.chat.ask(
-          "✎┊‌ يـرجـى إرسـال رقـم هاتفـك مـع رمـز الدولة مثــال 📱: \n+963995×××××",
+          "✎┊‌ يـرجـى إرسـال رقـم هاتفـك مـع رمـز الدولة مثــال 📱: \n+96477XXXXXXX",
           reply_to_message_id=m.id, filters=filters.text
         )
         phone = phone_ask.text
@@ -434,9 +434,7 @@ async def generator_and_about(app,m):
         except Exception:
           return await phone_ask.reply("خطأ! ، يرجى المحاولة مرة أخرى لاحقًا 🤠\n/start",quote=True)
         hash = send_code.phone_code_hash
-        code_ask = await m.chat.ask(
-          "✎┊‌ أرسـل الكـود\n إذا جاءك في هـذه الطريقـة '12345' أرسـل بين كـل رقـم فـراغ\nمثـال : ' 1 2 3 4 5' .",filters=filters.text
-        )
+        code_ask = await m.chat.ask("**✎┊‌ أرسـل الكـود\n ضع فراغا بين كل رقم قبل ذلك \nمثـال : ' 1 2 3 4 5' .**",filters=filters.text)
         code = code_ask.text
         try:
           await c.sign_in(phone, hash, code)
@@ -480,7 +478,7 @@ async def generator_and_about(app,m):
         c = TelegramClient(StringSession(), api_id, api_hash)
         await c.connect()
         await rep.delete()
-        phone_ask = await m.chat.ask( "✎┊‌ يـرجـى إرسـال رقـم هاتفـك مـع رمـز الدولة مثــال 📱: \n+963995××××× ",
+        phone_ask = await m.chat.ask( "**✎┊‌ يـرجـى إرسـال رقـم هاتفـك مـع رمـز الدولة مثــال 📱: \n+96477XXXXXXX **",
           reply_to_message_id=m.id, filters=filters.text
         )
         phone = phone_ask.text
@@ -490,7 +488,7 @@ async def generator_and_about(app,m):
           return await phone_ask.reply("✎┊‌ رقـم الهـاتف الذي أرسلـته غير صالح أعـد استخـراج الجلسـة مـرة أخـرى .\n/start", quote=True)
         except Exception:
           return await phone_ask.reply("خطأ! ، يرجى المحاولة مرة أخرى لاحقًا 🤠\n/start",quote=True)
-        code_ask = await m.chat.ask("*✎┊‌ أرسـل الكـود\n إذا جاءك في هـذه الطريقـة '12345' أرسـل بين كـل رقـم فـراغ\nمثـال : ' 1 2 3 4 5' .",filters=filters.text)
+        code_ask = await m.chat.ask("**✎┊‌ أرسـل الكـود\n ضع فراغا بين كل رقم قبل ذلك \nمثـال : ' 1 2 3 4 5' .**",filters=filters.text)
         code = code_ask.text.replace(" ","")
         try:
           await c.sign_in(phone, code, password=None)
@@ -513,7 +511,7 @@ async def generator_and_about(app,m):
         text += f'🔒 تم حفظ الجلسة في الرسائل المحفوظة'
         string_session = c.session.save()
         await rep.delete()
-        await c.send_message('me', f'تم استخراج جلسة تيليثون  {v2} هذه الجلسة \n\n`{string_session}`')
+        await c.send_message('me', f'**✎┊‌ تم الاستخراج بنجاح ☑️  {v2} هذه الجلسة** \n\n`{string_session}`\n\n** احذر ان تعطيها لأي شخص ❌**')
         await c.disconnect()
 
         await app.send_message(
@@ -523,5 +521,5 @@ async def generator_and_about(app,m):
 
 app.start()
 bot.start()
-print("تم تشغيل البوت @ELHYBA")
+print("✎┊‌ تم تشغيل البوت ✓")
 idle()
